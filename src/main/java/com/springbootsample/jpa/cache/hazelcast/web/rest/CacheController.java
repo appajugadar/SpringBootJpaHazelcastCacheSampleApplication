@@ -38,4 +38,20 @@ public class CacheController {
         return localMapStats;
     }
 
+    @GetMapping("/clearAll")
+    public Map<String, LocalMapStats>  clearAll() {
+        Collection<String> cacheNames = cacheManager.getCacheNames();
+        Map<String, LocalMapStats> localMapStats = new HashMap<>();
+        for (String cacheName : cacheNames) {
+            Cache cache =cacheManager.getCache(cacheName);
+            cache.clear();
+        }
+        return localMapStats;
+    }
+
+    @GetMapping("/clearOne")
+    public void clear(String cacheName) {
+        Cache cache =cacheManager.getCache(cacheName);
+        cache.clear();
+    }
 }
