@@ -52,15 +52,6 @@ public class CacheConfiguration {
         config.getNetworkConfig().setPort(5701);
         config.getNetworkConfig().setPortAutoIncrement(true);
 
-        // In development, remove multicast auto-configuration
-      //  if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) {
-            System.setProperty("hazelcast.local.localAddress", "127.0.0.1");
-
-            config.getNetworkConfig().getJoin().getAwsConfig().setEnabled(false);
-            config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
-            config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(false);
-     //   }
-
         config.getMapConfigs().put("default", initializeDefaultMapConfig());
 
         // Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
